@@ -10,6 +10,6 @@ const connection = createPool({
     multipleStatements: true,
     connectionLimit: 30
 });
-model.exports = {
+module.exports = {
     connection
 }
