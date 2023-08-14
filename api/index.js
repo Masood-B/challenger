@@ -27,8 +27,7 @@ app.use(express.static('./static'))
 
 app.use(
     express.urlencoded({
-        extended: false
-    }),
+        extended: false}),
     routes
 )
 routes.get('^/$|/challenger',
