@@ -1,1 +1,4 @@
-// Order
+class Orders{
+
+}
+module.exports = Orders
