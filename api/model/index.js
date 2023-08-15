@@ -1,8 +1,11 @@
 const Users = require('./Users')
 const Orders = require('./Orders')
 const Books = require('./Books')
-const BookAuthor = require('./BookAuthor')
+const BookAuthors = require('./BookAuthors')
 // Export all objects
 module.exports = {
-    users: new Users()
+    users: new Users(),
+    books: new Books(),
+    orders: new Orders(),
+    bookAuthors: new BookAuthors()
 }

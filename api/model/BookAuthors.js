@@ -1,13 +1,13 @@
 const db = require('../config')
 const {hash, compare, hashSync} = require('bcrypt')
 const {createToken} = require ('../middleware/AuthenticateUser')
-class Orders{
-    fetchOrders(req, res){
+class BookAuthors{
+    fetchBookAuthors(req, res){
         const query = `
-        SELECT a.orderID, b.userID, c.bookID, a.orderData
-        FROM Orders a
-        INNER JOIN Users b ON a.userID = b.userID
-        INNER JOIN Books c ON a.bookID = c.bookID
+        SELECT a.id,  a.authorName, a.authorSurname, b.bookID
+        FROM BookAuthors a
+        INNER JOIN Books b
+        ON a.bookID = b.bookID;
         `
         db.query(query, 
             (err, results)=>{
@@ -18,13 +18,13 @@ class Orders{
                 })
         })
     }
-    fetchOrder(req, res){
+    fetchBookAuthor(req, res){
         const query = `
-        SELECT orderID, userID, bookID, orderData
-        From Orders
-        Where orderID = ${req.params.id};
+        SELECT id,  authorName, authorSurname, bookID
+        From BookAuthors
+        Where id = ${req.params.id};
         `
-        db.getConnection.query(query,
+        db.query(query,
             (err, result)=>{
                 if(err) throw err
                 res.json({
@@ -33,11 +33,11 @@ class Orders{
                 })
             })
     }
-    async registerOrder(req, res){
+    async registerBookAuthor(req, res){
         const data = req.body
         //query
         const query = `
-        INSERT INTO Orders
+        INSERT INTO BookAuthors
         SET ?;
         `
         db.query(query, 
@@ -46,15 +46,15 @@ class Orders{
             if (err) throw err
             res.json({
                 status: res.statusCode,
-                msg: "You have registered."
+                msg: "The author now is registered."
             })
         })
     }
-    updateOrder(req, res){
+    updateBookAuthor(req, res){
         const query = `
-        UPDATE Orders
+        UPDATE BookAuthors
         SET ?
-        WHERE order ID = ?
+        WHERE id = ?
         `
         db.query(query, 
             [req.body, req.params.id],
@@ -62,24 +62,24 @@ class Orders{
                 if (err)throw err 
                 res.json({
                     status: res.statusCode,
-                    msg:"The order record was updated."
+                    msg:"The author record was updated."
 
                 })
             })
     }
-    deleteOrder(req, res){
+    deleteBookAuthor(req, res){
         const query = `
-        DELETE FROM Orders
-        WHERE orderID = ${req.params.id};
+        DELETE FROM BookAuthors
+        WHERE id = ${req.params.id};
         `
         db.query(query,
             (err)=>{
             if(err) throw err 
             res.json({
                 status: res.statusCode,
-                msg:"A order record was removed"
+                msg:"The author record was removed"
             })
         })
     }
 }
-module.exports = Orders
+module.exports = BookAuthors
