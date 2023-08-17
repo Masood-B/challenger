@@ -1,5 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const {verifyAToken} =
+require('../middleware/AuthenticateUser')
 const routes = express.Router()
 // Import all model's objects
 const {users, books, orders, bookAuthors} = require('../model')
