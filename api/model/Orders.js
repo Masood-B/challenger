@@ -4,10 +4,10 @@ const {createToken} = require ('../middleware/AuthenticateUser')
 class Orders{
     fetchOrders(req, res){
         const query = `
-        SELECT a.orderID, b.userID, c.bookID, a.orderData
-        FROM Orders a
-        INNER JOIN Users b ON a.userID = b.userID
-        INNER JOIN Books c ON a.bookID = c.bookID
+        SELECT Orders.orderID, Users.userID, Books.bookID, Orders.orderData
+        FROM Orders 
+        INNER JOIN Users ON Orders.userID = Users.userID
+        INNER JOIN Books ON Orders.bookID = Books.bookID
         `
         db.query(query, 
             (err, results)=>{

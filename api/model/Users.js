@@ -39,9 +39,9 @@ class Users{
         gender, userDOB, emailAdd, userPass,
         profileUrl
         FROM Users
-        WHERE emailAdd = ?;
+        WHERE emailAdd = '${emailAdd}';
         `
-        db.query(query, [emailAdd], async (err, result)=>{
+        db.query(query, async (err, result)=>{
             if(err) throw err
             if(!result?.length){
                 res.json({
@@ -51,8 +51,8 @@ class Users{
             }else {
                 await compare(userPass,
                     result[0].userPass,
-                    (Err, Result)=>{
-                        if(Err) throw Err
+                    (cErr, cResult)=>{
+                        if(cErr) throw cErr
                         // Create a token
                         const token =
                         createToken({
@@ -65,7 +65,7 @@ class Users{
                             maxAge: 3600000,
                             httpOnly: true
                         })
-                        if(Result) {
+                        if(cResult) {
                             res.json({
                                 msg: "Logged in",
                                 token,
@@ -114,13 +114,18 @@ class Users{
         })
     }
     updateUser(req, res){
+        const data = req.body
+        if(data.userPass){
+            data.userPass =
+            hashSync(data.userPass, 15)
+        }
         const query = `
         UPDATE Users
         SET ?
         WHERE userID = ?
         `
         db.query(query, 
-            [req.body, req.params.id],
+            [data, req.params.id],
             (err)=>{
                 if (err)throw err 
                 res.json({
