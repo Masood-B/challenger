@@ -20,9 +20,11 @@ class Orders{
     }
     fetchOrder(req, res){
         const query = `
-        SELECT orderID, userID, bookID, orderData
-        From Orders
-        Where orderID = ${req.params.id};
+        SELECT Orders.orderID, Users.userID, Books.bookID, Orders.orderData
+        FROM Orders 
+        INNER JOIN Users ON Orders.userID = Users.userID
+        INNER JOIN Books ON Orders.bookID = Books.bookID
+        Where orderID = '${req.params.id}';
         `
         db.getConnection.query(query,
             (err, result)=>{

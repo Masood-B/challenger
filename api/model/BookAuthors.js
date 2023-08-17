@@ -4,7 +4,7 @@ const {createToken} = require ('../middleware/AuthenticateUser')
 class BookAuthors{
     fetchBookAuthors(req, res){
         const query = `
-        SELECT a.id,  a.authorName, a.authorSurname, b.bookID
+        SELECT a.id, a.authorName, a.authorSurname, b.bookID
         FROM BookAuthors a
         INNER JOIN Books b
         ON a.bookID = b.bookID;
@@ -20,8 +20,10 @@ class BookAuthors{
     }
     fetchBookAuthor(req, res){
         const query = `
-        SELECT id,  authorName, authorSurname, bookID
-        From BookAuthors
+        SELECT a.id, a.authorName, a.authorSurname, b.bookID
+        FROM BookAuthors a
+        INNER JOIN Books b
+        ON a.bookID = b.bookID;
         Where id = ${req.params.id};
         `
         db.query(query,
