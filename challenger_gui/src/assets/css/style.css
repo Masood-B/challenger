@@ -1,0 +1,46 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+*,
+*::after,
+*::before{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    text-align: center;
+}
+/* Navbar Space */
+.nav-item{
+    margin-right: 2rem;
+}
+/* Image */
+img[alt="Logo"]{
+    width:5rem;
+    border-radius: 1rem;
+}
+/* App */
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+
+  }
+#app > div{
+  display: grid;
+    grid-template-rows: auto minmax(79vh, 1fr) auto;
+}
+  nav {
+    padding: 30px;
+  }
+  
+  nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  nav a.router-link-exact-active {
+    color: #42b983;
+  }

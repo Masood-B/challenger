@@ -1,14 +1,12 @@
 <template>
-  <div class="about">
-    <h2>About</h2>
-  </div>
+    <div>
+<h2>hello</h2>
+    </div>
 </template>
 
 <script>
     export default {
-        components: {
-
-}
+        
     }
 </script>
 

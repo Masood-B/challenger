@@ -1,7 +1,8 @@
 <template>
-  <div class="about">
-    <h2>About</h2>
-  </div>
+    <div class="contact">
+        <h2>Contact</h2>
+        <p>Call me</p>
+      </div>
 </template>
 
 <script>
