@@ -23,7 +23,7 @@ class BookAuthors{
         SELECT a.id, a.authorName, a.authorSurname, b.bookID
         FROM BookAuthors a
         INNER JOIN Books b
-        ON a.bookID = b.bookID;
+        ON a.bookID = b.bookID
         Where id = ${req.params.id};
         `
         db.query(query,
