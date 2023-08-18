@@ -26,7 +26,7 @@ class Orders{
         INNER JOIN Books ON Orders.bookID = Books.bookID
         Where orderID = '${req.params.id}';
         `
-        db.getConnection.query(query,
+        db.query(query,
             (err, result)=>{
                 if(err) throw err
                 res.json({
