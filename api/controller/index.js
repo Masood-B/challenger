@@ -11,7 +11,7 @@ const {users, books, orders, bookAuthors} = require('../model')
 // routes.get('^/$|/chanllenger', (req, res)=>{
 //     res.sendFile(path.resolve(__direname, "../static/html/index.html"))
 // })
-
+    
 routes.get('/users', (req, res)=>{
     users.fetchUsers(req, res)
 })
